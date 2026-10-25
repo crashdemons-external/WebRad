@@ -1,6 +1,11 @@
 Test fixtures
 =============
 
+native-preparation.json records SHA-256 hashes of all 295 files produced
+by the original native source preparation recipes. Only CRLF line endings
+are normalized to LF. The Node preparation test checks both the file list
+and every hash, including source patches, encodings and numeric tables.
+
 ui-before-classes.json contains 1,323 workflow snapshots. Tests account for
 changes to format labels, supported picture modes and receive controls.
 Waveform and decoded-image behavior are checked separately.

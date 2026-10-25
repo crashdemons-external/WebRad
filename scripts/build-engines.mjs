@@ -2,7 +2,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { ROOT, ENGINES, exists, run, isMain, fail } from './tooling.mjs';
 
-/** Selects the engines to compile with the Python build scripts. */
+/** Selects engines for the project-owned Node build recipes. */
 export class EngineBuilder {
     /**
      * Get compiler commands for the selected engines.
@@ -12,7 +12,7 @@ export class EngineBuilder {
      * @returns {Promise<Object[]>} Executables and their arguments.
      */
     static async engineCommands(
-        { engine = 'all', missing = false, emsdk, python = process.env.PYTHON || 'python' } = {},
+        { engine = 'all', missing = false, emsdk, python, debug = false, prepareOnly = false } = {},
         root = ROOT
     ) {
         if (!['all', ...ENGINES.map((unit) => unit.name)].includes(engine)) throw Error(`Unknown engine: ${engine}`);
@@ -20,15 +20,17 @@ export class EngineBuilder {
         for (const { name } of ENGINES) {
             if (engine !== 'all' && engine !== name) continue;
             const base = join(root, 'build/wasm', name);
-            if (missing && (await exists(base + '.js')) && (await exists(base + '.wasm'))) continue;
+            if (missing && !prepareOnly && (await exists(base + '.js')) && (await exists(base + '.wasm'))) continue;
             commands.push({
-                command: python,
+                command: process.execPath,
                 args: [
-                    '-B',
-                    join(root, 'scripts/engines/build.py'),
+                    join(root, 'scripts/engines/build.mjs'),
                     '--engine',
                     name,
-                    ...(emsdk ? ['--emsdk', resolve(emsdk)] : [])
+                    ...(emsdk ? ['--emsdk', resolve(emsdk)] : []),
+                    ...(python ? ['--python', python] : []),
+                    ...(debug ? ['--debug'] : []),
+                    ...(prepareOnly ? ['--prepare-only'] : [])
                 ]
             });
         }
@@ -43,19 +45,21 @@ if (isMain(import.meta.url)) {
                 missing: { type: 'boolean' },
                 emsdk: { type: 'string' },
                 python: { type: 'string' },
+                debug: { type: 'boolean' },
+                'prepare-only': { type: 'boolean' },
                 help: { type: 'boolean' }
             }
         });
         if (values.help)
             console.log(
-                `Compile WASM using an existing Emscripten installation.\nUsage: npm run build:engines -- [--emsdk PATH] [--engine NAME] [--missing] [--python EXECUTABLE]\nEngines: all, ${ENGINES.map((unit) => unit.name).join(', ')}\nRun npm run build afterward to refresh build/out.`
+                `Compile WASM using Node build recipes and an existing Emscripten installation.\nUsage: npm run build:engines -- [--emsdk PATH] [--engine NAME] [--missing] [--prepare-only] [--debug] [--python EXECUTABLE]\n--prepare-only generates sources without invoking Emscripten.\n--python selects Emscripten's internal interpreter.\nEngines: all, ${ENGINES.map((unit) => unit.name).join(', ')}\nRun npm run build afterward to refresh build/out.`
             );
         else {
-            const commands = await EngineBuilder.engineCommands(values);
+            const commands = await EngineBuilder.engineCommands({ ...values, prepareOnly: values['prepare-only'] });
             for (const { command, args } of commands) await run(command, args);
             console.log(
                 commands.length
-                    ? 'Engine compilation complete. Run npm run build to refresh build/out.'
+                    ? (values['prepare-only'] ? 'Engine source preparation complete.' : 'Engine compilation complete. Run npm run build to refresh build/out.')
                     : 'All selected compiled pairs already exist.'
             );
         }

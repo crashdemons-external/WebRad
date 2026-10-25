@@ -282,11 +282,15 @@ test('native command planner selects named units and skips complete flat pairs',
     const root = await temporary(t),
         all = await engineCommands({ python: 'python-custom' }, root);
     assert.equal(all.length, ENGINES.length);
-    assert.ok(all.every((command) => command.command === 'python-custom' && command.args[0] === '-B'));
+    assert.ok(all.every((command) => command.command === process.execPath && command.args[0] === join(root, 'scripts/engines/build.mjs')));
+    assert.ok(all.every((command) => command.args.at(-1) === 'python-custom' && command.args.includes('--python')));
     const selected = await engineCommands({ engine: 'sound-messages', emsdk: join(root, 'SDK with spaces') }, root);
     assert.equal(selected.length, 1);
     assert.equal(selected[0].args.at(-1), join(root, 'SDK with spaces'));
     assert.ok(selected[0].args.includes('sound-messages'));
+    const prepared = await engineCommands({ engine: 'multimode', prepareOnly: true, debug: true }, root);
+    assert.ok(prepared[0].args.includes('--prepare-only'));
+    assert.ok(prepared[0].args.includes('--debug'));
     await assert.rejects(engineCommands({ engine: 'unknown' }, root), /Unknown engine/);
     await mkdir(join(root, 'build/wasm'), { recursive: true });
     for (const { name } of ENGINES)

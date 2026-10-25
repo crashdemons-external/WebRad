@@ -2,7 +2,6 @@
 /node_modules/
 /.tools/
 /.engine-pending/
-/scripts/pending-sources.py
 
 # Generated engines, deployments, caches and build reports
 /build/
