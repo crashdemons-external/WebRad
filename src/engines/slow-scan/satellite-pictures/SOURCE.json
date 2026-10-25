@@ -1,0 +1,35 @@
+{
+    "repository": "Xerbo/aptdec",
+    "revision": "7db20300e54d52eacc30d8875f960ba233a557ab",
+    "sourceUrl": "https://github.com/Xerbo/aptdec/tree/7db20300e54d52eacc30d8875f960ba233a557ab",
+    "files": [
+        {
+            "path": "src/dsp.c",
+            "sha256": "46044a6ffb217bd342244d1361686f59d0ee658f4b1b57b063fa44c282b0f6f8"
+        },
+        {
+            "path": "src/filter.c",
+            "sha256": "ef7024b2ccde9fcc25bb117475f51a8f5db11c9c9cd04ca18a5aeced7ca34d0c"
+        },
+        {
+            "path": "src/filter.h",
+            "sha256": "51207ecf197ee4e24ffbfb881f98c0bf0aefc2e0b3f82cf65f4e5526c928dbe9"
+        },
+        {
+            "path": "src/taps.h",
+            "sha256": "8c79cf21ac3b85ed8fbb9dbe27690bfb1aa83fcb9848c4e6e80d06ed8391e871"
+        },
+        {
+            "path": "src/apt.h",
+            "sha256": "c2ca620bc0d9310ea32bf2ea318f02fd52d7c0d45aac8a4f6d16683711bbcebe"
+        },
+        {
+            "path": "src/util.h",
+            "sha256": "a12cb187dfb32b4b627dd63af0babb18d829c3baa9dea4afd8f8625f347baeac"
+        },
+        {
+            "path": "LICENSE",
+            "sha256": "d8c320ffc0030d1b096ae4732b50d2b811cf95e9a9b7377c1127b2563e0a0388"
+        }
+    ]
+}

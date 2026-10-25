@@ -1,0 +1,51 @@
+Engine source snapshots
+=======================
+
+Sources are in src/engines/<category>/<unit>/ with their original copyright
+and license headers. Browser adaptations are included; archive identities
+below identify the original inputs rather than the adapted source bytes.
+Adapters and preparation scripts are maintained alongside the sources.
+
+multimode: fldigi 4.2.13
+    Archive: fldigi-source.zip
+    SHA-256: 3840c28caced2e66e86976fbc7d2f72555f6b5ff4a02404100cf88f6eefadcac
+
+analog-sstv: MMSSTV 1.13A
+    Source snapshot retained in src/engines/slow-scan/analog-sstv/.
+
+weather-fax: fldigi WEFAX 4.2.13
+    Included in the fldigi archive above.
+
+hamdrm: ON4QZ/QSSTV
+    Revision: 8c27d6d169d8c6c197eb47c2089870e39bc06a02
+    Archive SHA-256: 688bfd52078feb2c4ff29b29a24636a838b40f1559d6095ee5b0c5aa1c9d1ccd
+
+jpeg2000: uclouvain/openjpeg v2.5.4
+    Archive SHA-256: 1048d084b89ac1587e3b0dca00b863a757fed2bc1804c6355eb4bce9090356b7
+
+packet-radio: wb2osz/direwolf
+    Revision: eda1383f5fa9d8ba3cb27f99db1d2c79494404c9
+    Archive SHA-256: 997b811e741a18dd743a97dea42f9263b9c47ef17fd072ec26f21b9c0301fc8f
+
+weak-signal: kgoba/ft8_lib
+    Revision: 9fec6ca39886edbf96f4f5e71edc76da5074e871
+    Archive SHA-256: a50f0373f8d2994572aeac1f7b9a8e3e92609ae5de193a28f9ec93333dfa6169
+
+sound-messages: ggerganov/ggwave
+    Revision: 060aec73dd7123ccac200442f75bdc7369795ffe
+    Archive SHA-256: b7fea1148371ac99f166924145882a8390200ab908ade30efddc76876f9f8b34
+
+signaling: EliasOenal/multimon-ng
+    Revision: 0722194b7739748e49f18ac1fc76f236d4ca390d
+    Archive SHA-256: 436309b32e78ceed8927b7c98d7e6b715bd4db4a74943b788567e253431e6127
+
+digital-voice: drowe67/codec2 (Codec2 / FreeDV)
+    Revision: 310777b1c6f1af0bc7c72f5b32f80f6fd9136962
+    Archive SHA-256: 565b4fb1eaac2792c0bb0c88233e9699295a07d721bfb4c56109dea79d7c4dd9
+
+sensor-radio: merbanan/rtl_433
+    Revision: d511d8a2f8ea5bd790491cc31fa2a799ff46b7d8
+    Archive SHA-256: 0669d2113ffc91ec62e63b22bc75845afe898f139eff28ea0ce445ea7895ccea
+
+Additional standalone source subsets retain pinned revisions and byte
+hashes in SOURCE.json files under their engine directories.

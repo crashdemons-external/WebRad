@@ -1,0 +1,79 @@
+Test fixtures
+=============
+
+ui-before-classes.json contains 1,323 workflow snapshots. Tests account for
+changes to format labels, supported picture modes and receive controls.
+Waveform and decoded-image behavior are checked separately.
+
+SSTV alignment
+--------------
+
+martin2-alignment.wav is the supplied Martin_2_bond.wav recording: mono,
+11,025 Hz, 60.797 seconds.
+SHA-256: 21e290f85943984b85bcf502ddaa1364413d7434510bd6fe78e1fe743b639c13
+
+The Martin 2 reference image is 320 by 256 RGBA pixels. Receiver settings
+use wide band-pass filtering, Hilbert detection, normal sensitivity,
+automatic line alignment and no automatic clock-slant correction.
+Reference RGBA SHA-256:
+    1c8dd0da146b7be490366ed3350cf47cccf20b7d3728d8902b9cb7e4824288dd
+Explicit Martin 2 selection starts before the VIS header and produces:
+    42e06c400767df7aa0a30d4b26695d538b31ece86027d71b08618273925003f4
+Reference WASM SHA-256:
+    99c1cde1f10d8d5d0aba9a85d490413eadc5a403cfccbc0d8f50b960b84a2615
+
+Desktop SCAMP recordings
+------------------------
+
+scampook-desktop.wav and scfskfst-desktop.wav are unmodified fldigi desktop
+transmissions supplied on 2026-10-16. Both are mono 8,000 Hz 16-bit PCM,
+centered at 1,000 Hz. The desktop release was not recorded. Expected text
+is SCAMPOOK TEST and SCFSKFST TEST; output may also contain the end marker.
+
+scampook-desktop.wav: 21.102 seconds
+    e9526a08a9e6fbc5c4a93798eb799366febeee5b910f993c9f2a1f1bf3e30ab0
+scfskfst-desktop.wav: 6.840 seconds
+    25c99f5935a163254f2c97124f44b3fa7b7e97ae33dae5c463fc180753c61ce7
+
+Desktop fldigi pictures
+----------------------
+
+fldigi-picture-*.wav are unmodified mono 8,000 Hz PCM recordings from
+fldigi 4.2.13. Tests tune to 1,500 Hz, disable AFC and squelch, and append
+five seconds of silence. These fixtures exercise independent desktop
+transmissions. SHA-256 hashes:
+
+fldigi-picture-mfsk16.wav: MFSK16, 32 by 24 color
+    5906ce320aeaf3cc30a674456a6eae8089850b781c15f7d5d93a070d402790fd
+fldigi-picture-thor16.wav: THOR16, 59 by 74 color
+    cf4a794ee3d32a7c5153a7957dc3ecb2095c52ff6afe9eff3d5cfcf2dcdaf1d2
+fldigi-picture-thor25.wav: THOR25, 59 by 74 color
+    de1c02dc69e4f16fe80c545b1bd9c707cc6d8413d903bc55b5a186525362e2b8
+fldigi-picture-ifkp.wav: IFKP 1.0x, 160 by 120 color
+    ae7d0cae6b95573842bb41f527e45a16427ac6811cb0c89ee3eb3e9e6be5ad60
+fldigi-picture-fsq160.wav: FSQ-3, W1TEST sender, 160 by 120 color
+    85b4a5d687387303900a197b7cf15c2aba62931f10473f0a852fed404abc0621
+fldigi-picture-fsq320.wav: FSQ-3, W1TEST sender, 320 by 240 color
+    512d9215f0076bffbfa3717263393f8222612a78891476edc339aa67585cd97f
+fldigi-picture-fsq-empty-sender.wav: FSQ-3, no picture expected
+    f9ae03287dc697ff1ac03b0e270ae6c49644ec0ebdce555455ab6355f32c5ccb
+
+Browser FSQ photograph
+----------------------
+
+fsq-browser-picture.wav is a supplied FSQ-3 transmission: sender TEST,
+320 by 240 color, mono 12 kHz 16-bit PCM, 2,443,528 samples. It includes
+the 200-sample browser preroll. The source PNG is 320 by 256 pixels.
+
+fsq-browser-picture-expected.rgb stores packed RGB reference pixels.
+The source was resized to 300 by 240 using Pillow bilinear resampling
+and centered on a white 320 by 240 canvas. Tests allow mean error below
+4/255 for FM filtering and resampling differences, with no fitted phase
+or spatial alignment. SHA-256 hashes:
+
+fsq-browser-picture.wav:
+    104aec042a50565dc7e6eb42a1a92452dcce0fd9760f3fbf1b342a1178455c58
+fsq-browser-picture-source.png:
+    bd7ec7c6d8cccefee85e010d04d2c434fb325c488e6c2298418b7c2d944b7ecf
+fsq-browser-picture-expected.rgb:
+    3e0d370a27d5e008ac44f26d27efd4af47d0f1ddb0ef985141680662f2cf9bc8

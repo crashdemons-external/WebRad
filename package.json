@@ -1,0 +1,24 @@
+{
+  "name": "webrad",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:engines": "node scripts/build-engines.mjs",
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:engines": "node --test tests/engines/*/*.test.mjs tests/engines/*/*.test.cjs",
+    "verify": "node scripts/verify.mjs",
+    "check:source": "node scripts/check-source.mjs",
+    "format": "prettier --write \"src/app/**/*.{js,css}\" \"scripts/**/*.mjs\"",
+    "format:check": "prettier --check \"src/app/**/*.{js,css}\" \"scripts/**/*.mjs\""
+  },
+  "devDependencies": {
+    "acorn": "8.19.0",
+    "esbuild": "0.28.2",
+    "prettier": "3.9.10"
+  }
+}

@@ -1,0 +1,154 @@
+import { options } from './decoder-session.js';
+
+export function createEncoderSession(core, send) {
+    const modes = JSON.parse(core.UTF8ToString(core._web_modes()));
+    let job,
+        rate,
+        total = 0,
+        limit,
+        bytes = 0,
+        live = false,
+        spectrumAt = 0,
+        image = false;
+    function textCall(fn, text, ...args) {
+        const encoded = new TextEncoder().encode(text),
+            pointer = core._malloc(encoded.length + 1);
+        if (!pointer) throw new Error('Not enough memory to encode this message.');
+        try {
+            core.HEAPU8.set(encoded, pointer);
+            core.HEAPU8[pointer + encoded.length] = 0;
+            return fn(pointer, ...args);
+        } finally {
+            core._free(pointer);
+        }
+    }
+    /** Reset job counters, validate the selected mode and initialize text or image encoding. */
+    function startTransmission(data) {
+        job = data.job;
+        total = 0;
+        spectrumAt = 0;
+        live = !!data.live;
+        image = !!data.image;
+        bytes = new TextEncoder().encode(data.text || '').length;
+        if (bytes > 100000) throw new Error('A message is limited to 100,000 UTF-8 bytes.');
+        const settings = data.settings,
+            mode = modes.find((candidate) => candidate.id === settings.mode && candidate.enabled);
+        if (!mode || !(data.image ? core._web_tx_image_supported(mode.id) : core._web_tx_supported(mode.id)))
+            throw new Error('This mode cannot encode the selected input.');
+        configureMode(mode, settings);
+        rate = data.image ? startImage(data, settings) : startText(data, settings);
+        if (!rate) throw new Error('Cannot initialize the selected encoder.');
+        limit = rate * 1800;
+        send({ type: 'started', job, rate, frequency: core._web_tx_frequency(), live: !!data.live });
+    }
+    /** Apply modem settings around native mode construction and then tune the transmitter. */
+    function configureMode(mode, settings) {
+        // Configure before and after construction: some constructors initialize
+        // their transmit codec from the upstream configuration defaults.
+        const configure = () => {
+            textCall(core._web_set_callsign, settings.callsign || '');
+            for (const [key, index] of Object.entries(options)) {
+                if (settings[key] === undefined) continue;
+                if ([31, 32].includes(index) && mode.name !== 'OLIVIA') continue;
+                if ([35, 36].includes(index) && mode.name !== 'CONTESTIA') continue;
+                core._web_set_option(index, Number(settings[key]));
+            }
+        };
+        configure();
+        core._web_create(mode.id);
+        configure();
+        core._web_set_option(44, settings.sideband === 'LSB' ? 0 : 1);
+        core._web_set_frequency(settings.txFrequencyLock ? settings.txFrequency : settings.frequency);
+    }
+    /** Start the native picture transmitter and release its copied pixel buffer. */
+    function startImage(data, settings) {
+        const imageData = data.image;
+        if (!(imageData.pixels instanceof Uint8Array) || imageData.pixels.length !== imageData.width * imageData.height * 3)
+            throw new Error('Invalid transmit image pixels.');
+        const pointer = core._malloc(imageData.pixels.length);
+        if (!pointer) throw new Error('Not enough memory to encode this image.');
+        try {
+            core.HEAPU8.set(imageData.pixels, pointer);
+            return textCall(
+                (call) =>
+                    core._web_tx_image_begin(
+                        pointer,
+                        imageData.width,
+                        imageData.height,
+                        imageData.gray ? 1 : 0,
+                        imageData.format,
+                        imageData.spp || 8,
+                        data.live ? 1 : 0,
+                        settings.txOffset || 0,
+                        call
+                    ),
+                imageData.callsign || ''
+            );
+        } finally {
+            core._free(pointer);
+        }
+    }
+    /** Start the native text transmitter with its callsign and offset. */
+    function startText(data, settings) {
+        return textCall(core._web_tx_begin, data.text, data.live ? 1 : 0, settings.txOffset || 0);
+    }
+    /** Append text to the active job while enforcing its UTF-8 byte limit. */
+    function appendText(data) {
+        const count = new TextEncoder().encode(data.text).length;
+        if (bytes + count > 100000) throw new Error('A transmit session is limited to 100,000 UTF-8 bytes.');
+        if (textCall(core._web_tx_append, data.text)) bytes += count;
+        else send({ type: 'queue-closed', job });
+    }
+    /** Copy the next audio block and optional live spectrum, then send the worker result. */
+    function pullAudio(data) {
+        const length = core._web_tx_step(Math.min(8192, data.maximum || 4096));
+        if (length < 0) throw new Error('The generated audio exceeds the 30-minute limit.');
+        total += length;
+        if (total > limit) throw new Error('The generated audio exceeds the 30-minute limit.');
+        const pointer = core._web_tx_buffer(),
+            samples = core.HEAPF32.slice(pointer / 4, pointer / 4 + length),
+            transfers = [samples.buffer];
+        let spectrum;
+        if (live && total - spectrumAt >= 512) {
+            spectrumAt = total - (total % 512);
+            const fftPointer = core._web_spectrum();
+            spectrum = core.HEAPF32.slice(fftPointer / 4, fftPointer / 4 + core._web_spectrum_size());
+            transfers.push(spectrum.buffer);
+        }
+        send(
+            {
+                type: 'samples',
+                job,
+                rate,
+                samples,
+                spectrum,
+                total,
+                progress: image ? core._web_tx_image_progress() : undefined,
+                cursor: core._web_tx_cursor(),
+                ending: !!core._web_tx_ended(),
+                done: !!core._web_tx_done()
+            },
+            transfers
+        );
+    }
+    return {
+        handle(data) {
+            if (data.type === 'start') {
+                startTransmission(data);
+                return;
+            }
+            if (data.job !== job) return;
+            switch (data.type) {
+                case 'append':
+                    appendText(data);
+                    break;
+                case 'finish':
+                    core._web_tx_finish();
+                    break;
+                case 'pull':
+                    pullAudio(data);
+                    break;
+            }
+        }
+    };
+}

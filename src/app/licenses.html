@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WebRad engines & licenses</title>
+    <script src="app/theme.js"></script>
+    <link rel="stylesheet" href="app/styles.css">
+    <style>
+        main {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 25px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        p,
+        li {
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--teal-dark);
+        }
+
+        pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <a href="./">← Back to WebRad</a>
+        <h1>Engines & licenses</h1>
+        <p>WebRad includes native signal-processing engines. They run in WebAssembly on your device. No audio, picture, file, or decoded message is sent to a server.</p>
+        <ul>
+            <li><a href="licenses/engines/multimode/COPYING">fldigi: GNU GPL</a></li>
+            <li><a href="licenses/engines/analog-sstv/THIRD_PARTY_NOTICES.md">MMSSTV, QSSTV, OpenJPEG and WEFAX notices</a></li>
+            <li><a href="licenses/engines/multimode/ADDITIONAL-NOTICES.md">Dire Wolf, ft8_lib, ggwave, multimon-ng, Codec2 / FreeDV and rtl_433 notices</a></li>
+            <li><a href="licenses/engines/terminal-tones/COPYING">minimodem serial tone detector: GPL-3.0-or-later</a></li>
+            <li><a href="licenses/engines/radio-identifiers/COPYING">Matthew Kaufman MDC-1200 and FleetSync: GPL-2.0-only</a></li>
+            <li><a href="licenses/engines/satellite-pictures/LICENSE">aptdec satellite DSP: GPL-2.0-or-later</a></li>
+            <li><a href="licenses/engines/beacon-messages/LICENSE">WSPR decoder and channel encoder: GPL-3.0-or-later</a></li>
+            <li><a href="licenses/engines/aircraft-messages/NOTICES.md">acarsdec notices, Library GPL 2.0 core headers and upstream GPL 2.0 license</a></li>
+            <li><a href="licenses/engines/weak-signal/kissfft-COPYING">KISS FFT: BSD license, reused for serial tones, WSPR and WebRad's spectrogram engine</a></li>
+        </ul>
+        <p>Source code and license notices are included with the project and in the deployed licenses/ directory.</p>
+        <p>Some native modes require hardware, external models, or host services outside the supplied browser engines. The format catalog lists compiled capabilities; receiver performance on noisy real-world signals depends on the recording and selected setup.</p>
+    </main>
+</body>
+</html>

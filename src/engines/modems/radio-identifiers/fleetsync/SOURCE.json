@@ -1,0 +1,27 @@
+{
+    "repository": "russinnes/fsync-mdc1200-decode",
+    "revision": "287356a99d4493b45b3fd447b276150262e9c871",
+    "sourceUrl": "https://github.com/russinnes/fsync-mdc1200-decode/tree/287356a99d4493b45b3fd447b276150262e9c871",
+    "files": [
+        {
+            "path": "fsync_decode.c",
+            "sha256": "1563bc65e708c49c29eb25036b3b782ef14933b3e05a908f5e04005c6b7332cb"
+        },
+        {
+            "path": "fsync_decode.h",
+            "sha256": "fb38b871e37d35de068e6819fa1407ffdaeac3b54a6e0756351dd80108a144b1"
+        },
+        {
+            "path": "fsync_common.c",
+            "sha256": "f5f8366edd0dffd00513dc2a9d56807df57bd1626dd1adf7333a39a8d36236fd"
+        },
+        {
+            "path": "fsync_types.h",
+            "sha256": "5b487baabfe2f16e7a97f41da44bb20b0d35c36dcacfd07f480dc08b132873d7"
+        },
+        {
+            "path": "COPYING",
+            "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+        }
+    ]
+}

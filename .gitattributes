@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+
+# Preserve upstream snapshots and fixture bytes.
+/src/engines/** -text
+/licenses/** -text
+/tests/fixtures/** -text
+*.wasm binary
+*.wav binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.rgb binary

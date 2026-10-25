@@ -1,0 +1,54 @@
+WebRad
+======
+
+WebRad encodes and decodes radio signals in the browser. Audio, pictures,
+files and messages are processed locally in WebAssembly workers.
+
+Build and run
+-------------
+
+Use Node.js 22 or newer, Python 3.10 or newer, and an existing Emscripten SDK:
+
+    npm ci --ignore-scripts
+    npm run build:engines -- --engine all --emsdk path/to/emsdk
+    npm run build
+    npm start
+
+Open http://127.0.0.1:8080/. Choose another port with
+`npm start -- --port 8081`. Live microphone input requires HTTPS or localhost.
+Installation hooks are disabled in .npmrc.
+
+Native compilation produces 17 JavaScript/WebAssembly pairs in build/wasm/.
+Generated files are excluded from Git. After compiling the engines, reuse
+them for subsequent app builds. Use --engine NAME to rebuild one engine.
+The --emsdk option is optional when Emscripten is already activated. Use
+--python EXECUTABLE to select Python.
+
+Checks
+------
+
+    npm test
+    npm run test:engines
+    npm run verify
+    npm run check:source
+
+Run the app build before the tests and deployment verifier.
+
+Deployment
+----------
+
+Deploy the contents of build/out/ to a static HTTP(S) host. Set version in
+build.config.json and rebuild for each release; the build versions local
+asset URLs so browsers fetch updated files.
+
+Sources and notices
+-------------------
+
+src/app/ contains the interface; src/runtime/engines/ contains browser
+runtime modules. Native sources and adapters are in src/engines/, grouped
+by category and engine. Build tools are in scripts/engines/.
+
+SOURCE-VERSIONS records upstream revisions and archive identities.
+Individual SOURCE.json files record hashes for imported source subsets.
+Original copyright, license and third-party notices are retained in the
+sources and licenses/. The deployed licenses.html links to those notices.

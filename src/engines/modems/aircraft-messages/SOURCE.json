@@ -1,0 +1,35 @@
+{
+    "repository": "f00b4r0/acarsdec",
+    "revision": "ae23498013b962ba2c7bfd9ba9ade712cc297254",
+    "sourceUrl": "https://github.com/f00b4r0/acarsdec/tree/ae23498013b962ba2c7bfd9ba9ade712cc297254",
+    "files": [
+        {
+            "path": "LICENSE.md",
+            "sha256": "aef8b4222b79d0dbf6bf17cfff71c90a6a6bb8917a4162abe417b469ed22da2e"
+        },
+        {
+            "path": "acars.c",
+            "sha256": "c3d520feed93a5bb64cd98928a105a328e1ac0d0e2b7a50a00429c3f82733318"
+        },
+        {
+            "path": "acars.h",
+            "sha256": "384fe03a232955b5220d2aafb1652e0a167c03ed851e969013194041092e9d7b"
+        },
+        {
+            "path": "acarsdec.h",
+            "sha256": "cdbc41c19ee55ceec8b9894a55c039ae90196dcdae8b8e2513d73de6a7c69e1e"
+        },
+        {
+            "path": "msk.c",
+            "sha256": "b9baf291a98b8d6dbc43f319367e6b5030d335daa334d47c0d88548ad151ee15"
+        },
+        {
+            "path": "msk.h",
+            "sha256": "c6f454593cca7728f37d0e9cd7bfeda8e373a0416d8ee156ddfb8eb5d2b53290"
+        },
+        {
+            "path": "syndrom.h",
+            "sha256": "75d76fcb9551e7b488c2b90dda06c19a9848a33c64555a8ffc088748a8406a85"
+        }
+    ]
+}

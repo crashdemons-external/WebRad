@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Turn text, pictures, files and speech into signals, or recover them from recordings. Audio processing stays on your device.">
+    <meta name="theme-color" content="#098596">
+    <title>WebRad · Signal encoder & decoder</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="application.css">
+</head>
+<body>
+    <div id="app"><p class="boot-message">Loading WebRad…</p></div>
+    <dialog id="format-dialog" aria-labelledby="format-title"></dialog>
+    <dialog id="utility-dialog" aria-labelledby="utility-title"></dialog>
+    <dialog id="advanced-dialog" aria-labelledby="advanced-title"></dialog>
+    <dialog id="packet-dialog" aria-labelledby="packet-title" aria-describedby="packet-guidance"></dialog>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <input id="picture-upload" type="file" accept="image/*,.jp2,.j2k,.jpc" hidden>
+    <input id="audio-upload" type="file" accept="audio/*,.wav,.mmv,.c2" hidden>
+    <input id="file-upload" type="file" hidden>
+    <input id="sensor-upload" type="file" accept=".cu8,.cs16,.cf32,.iq,.json,.ook,.txt,.am,.fm" hidden>
+    <input id="repair-upload" type="file" accept=".bin,.txt" hidden>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

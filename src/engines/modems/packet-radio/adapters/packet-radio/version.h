@@ -1,0 +1,3 @@
+#define MAJOR_VERSION 1
+#define MINOR_VERSION 8
+#define DIREWOLF_VERSION "1.8.2 WebRad"

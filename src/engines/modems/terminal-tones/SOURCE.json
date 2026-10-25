@@ -1,0 +1,23 @@
+{
+    "repository": "kamalmostafa/minimodem",
+    "revision": "bb2f34cf5148f101563aa926e201d306edbacbd3",
+    "sourceUrl": "https://github.com/kamalmostafa/minimodem/tree/bb2f34cf5148f101563aa926e201d306edbacbd3",
+    "files": [
+        {
+            "path": "src/fsk.c",
+            "sha256": "451d30ab5a2e819d0c5248e30a35d1eb1aa9a4f559d3c52edf3014f088826d86"
+        },
+        {
+            "path": "src/fsk.h",
+            "sha256": "37d7d532c2c862ebad7e51e4919c6ddf8cb6d0670ee33e46d9ea549e451afad2"
+        },
+        {
+            "path": "COPYING",
+            "sha256": "ce53c08777ca7b4174d8c7522f3be7afadd22d812fed90d0a71a9b6bc3a60785"
+        },
+        {
+            "path": "AUTHORS",
+            "sha256": "b05745e97bab4c24f8de51f4446b9693c06f77be5ec35e74b774de063eae4b2d"
+        }
+    ]
+}

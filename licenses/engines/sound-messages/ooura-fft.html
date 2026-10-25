@@ -1,0 +1,402 @@
+<html>
+<head>
+    <title>FFT Package 1-dim / 2-dim</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>General Purpose FFT (Fast Fourier/Cosine/Sine Transform) Package</h1>
+
+<hr>
+
+<h2>1-dim DFT / DCT / DST</h2>
+<blockquote>
+    <h3>Description</h3>
+    <blockquote><p>
+        This is a package to calculate Discrete Fourier/Cosine/Sine 
+        Transforms of 1-dimensional sequences of length 2^N.
+        This package contains C and Fortran FFT codes.
+    </p></blockquote>
+
+    <h3>Package</h3>
+    <ul>
+        <li>
+            <a href="fft.tgz">
+                fft.tgz (71KB) updated: 2006/12/28
+            </a>(Fixed a minor bug)
+        <li>
+            <a href="fft.zip">
+                fft.zip (75KB) updated: 2006/12/28
+            </a>(Fixed a minor bug)
+    </ul>
+
+    <h3>Files in the Package</h3>
+    <blockquote>
+        <table border=0>
+            <tr align=left>
+                <td>fft4g.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Fast Version (radix 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fft4g.f</td>
+                <td>: FFT Package in Fortran</td>
+                <td>- Fast Version (radix 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fft4g_h.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Simple Version (radix 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fft8g.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Fast Version (radix 8, 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fft8g.f</td>
+                <td>: FFT Package in Fortran</td>
+                <td>- Fast Version (radix 8, 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fft8g_h.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Simple Version (radix 8, 4, 2)</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Fast Version (Split-Radix)
+                </td>
+            </tr>
+            <tr align=left>
+                <td>fftsg.f</td>
+                <td>: FFT Package in Fortran</td>
+                <td>- Fast Version (Split-Radix)
+                </td>
+            </tr>
+            <tr align=left>
+                <td>fftsg_h.c</td>
+                <td>: FFT Package in C</td>
+                <td>- Simple Version (Split-Radix)
+                </td>
+            </tr>
+            <tr align=left>
+                <td>readme.txt</td>
+                <td>: readme file</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>sample1/</td>
+                <td>: Sample Program 1</td>
+                <td>- for test</td>
+            </tr>
+            <tr align=left>
+                <td>Makefile</td>
+                <td>: Makefile (for gcc, cc)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>Makefile.f77</td>
+                <td>: Makefile (for Fortran)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>testxg.c</td>
+                <td>: Test Program for "fft*g.c"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>testxg.f</td>
+                <td>: Test Program for "fft*g.f"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>testxg_h.c</td>
+                <td>: Test Program for "fft*g_h.c"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>sample2/</td>
+                <td>: Sample Program 2</td>
+                <td>- for benchmarks</td>
+            </tr>
+            <tr align=left>
+                <td>Makefile</td>
+                <td>: Makefile (for gcc, cc)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>Makefile.pth</td>
+                <td>: Makefile (for multi-threads)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td valign=top>pi_fft.c</td>
+                <td colspan=2>:
+                    PI(= 3.1415926535897932384626...) Calculation Program<br>
+                    - a Benchmark Test for "fft*g.c"
+                </td>
+            </tr>
+        </table>
+    </blockquote>
+
+    <h3>Difference of the Files</h3>
+    <blockquote>
+        <p>The same routines are in each C and Fortran file.
+        Simple versions use no work area, but
+        fast versions use work areas.
+        Fast versions have the same specification.
+    </blockquote>
+
+    <h3>Routines in "fft*.*"</h3>
+    <blockquote>
+        <table border=0>
+            <tr align=left>
+                <td>cdft()</td>
+                <td>: Complex Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>rdft()</td>
+                <td>: Real Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddct()</td>
+                <td>: Discrete Cosine Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddst()</td>
+                <td>: Discrete Sine Transform</td>
+            </tr>
+            <tr align=left>
+                <td>dfct()</td>
+                <td>: Cosine Transform of RDFT (Real Symmetric DFT)</td>
+            </tr>
+            <tr align=left>
+                <td>dfst()</td>
+                <td>: Sine Transform of RDFT (Real Anti-symmetric DFT)</td>
+            </tr>
+        </table>
+    </blockquote>
+
+    <h3>Usage</h3>
+    <blockquote>
+        <p>Brief explanations are in block comments of each packages.
+        The examples are given in the test programs.
+        </p>
+    </blockquote>
+</blockquote>
+
+<hr>
+
+<h2>2-dim/3-dim DFT / DCT / DST</h2>
+<blockquote>
+    <h3>Description</h3>
+    <blockquote><p>
+        This is a package to calculate Discrete Fourier/Cosine/Sine 
+        Transforms of 2,3-dimensional sequences of length 2^N.
+    </p></blockquote>
+
+    <h3>Package</h3>
+    <ul>
+        <li>
+            <a href="fft2d.tgz">
+                fft2d.tgz (53KB) updated: 2006/12/28
+            </a>(Fixed a minor bug)
+        <li>
+            <a href="fft2d.zip">
+                fft2d.zip (60KB) updated: 2006/12/28
+            </a>(Fixed a minor bug)
+    </ul>
+
+    <h3>Files in the Package</h3>
+    <blockquote>
+        <table border=0>
+            <tr align=left>
+                <td>alloc.c</td>
+                <td>: 2D,3D-array Allocation Code</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fft4f2d.c</td>
+                <td>: 2D FFT Package in C</td>
+                <td>- Version I</td>
+            </tr>
+            <tr align=left>
+                <td>fft4f2d.f</td>
+                <td>: 2D FFT Package in Fortran</td>
+                <td>- Version I</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg.c</td>
+                <td>: 1D FFT Package in C</td>
+                <td>- Split-Radix Version</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg.f</td>
+                <td>: 1D FFT Package in Fortran</td>
+                <td>- Split-Radix Version</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg2d.c</td>
+                <td>: 2D FFT Package in C</td>
+                <td>- Version II</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg2d.f</td>
+                <td>: 2D FFT Package in Fortran</td>
+                <td>- Version II</td>
+            </tr>
+            <tr align=left>
+                <td>fftsg3d.c</td>
+                <td>: 3D FFT Package in C</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fftsg3d.f</td>
+                <td>: 3D FFT Package in Fortran</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>shrtdct.c</td>
+                <td>: 8x8, 16x16 DCT Package</td>
+                <td>- faster than ddct2d()</td>
+            </tr>
+            <tr align=left>
+                <td>readme2d.txt</td>
+                <td>: readme file</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>sample2d/</td>
+                <td>: Sample Program</td>
+                <td>- for test</td>
+            </tr>
+            <tr align=left>
+                <td>Makefile</td>
+                <td>: Makefile (for gcc, cc)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>Makefile.f77</td>
+                <td>: Makefile (for Fortran)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>Makefile.pth</td>
+                <td>: Makefile (for multi-threads)</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fft4f2dt.c</td>
+                <td>: Test Program for "fft4f2d.c"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fft4f2dt.f</td>
+                <td>: Test Program for "fft4f2d.f"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fftsg2dt.c</td>
+                <td>: Test Program for "fftsg2d.c"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fftsg2dt.f</td>
+                <td>: Test Program for "fftsg2d.f"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fftsg3dt.c</td>
+                <td>: Test Program for "fftsg3d.c"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>fftsg3dt.f</td>
+                <td>: Test Program for "fftsg3d.f"</td>
+                <td></td>
+            </tr>
+            <tr align=left>
+                <td>shrtdctt.c</td>
+                <td>: Test Program for "shrtdct.c"</td>
+                <td></td>
+            </tr>
+        </table>
+    </blockquote>
+
+    <h3>Difference of the Files</h3>
+    <blockquote>
+        <p>Version I routines perform the 2D FFTs directly, but
+        version II routines use 1D FFT routines.
+        Version II is usually faster than version I.
+        </p>
+    </blockquote>
+
+    <h3>Routines in "fft**2d.*"</h3>
+    <blockquote>
+        <table border=0>
+            <tr align=left>
+                <td>cdft2d()</td>
+                <td>: 2-dim Complex Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>rdft2d()</td>
+                <td>: 2-dim Real Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddct2d()</td>
+                <td>: 2-dim Discrete Cosine Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddst2d()</td>
+                <td>: 2-dim Discrete Sine Transform</td>
+            </tr>
+        </table>
+    </blockquote>
+    <h3>Routines in "fftsg3d.*"</h3>
+    <blockquote>
+        <table border=0>
+            <tr align=left>
+                <td>cdft3d()</td>
+                <td>: 3-dim Complex Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>rdft3d()</td>
+                <td>: 3-dim Real Discrete Fourier Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddct3d()</td>
+                <td>: 3-dim Discrete Cosine Transform</td>
+            </tr>
+            <tr align=left>
+                <td>ddst3d()</td>
+                <td>: 3-dim Discrete Sine Transform</td>
+            </tr>
+        </table>
+    </blockquote>
+</blockquote>
+
+<hr>
+
+<h2>License</h2>
+
+<blockquote>
+    <p>Copyright Takuya OOURA, 1996-2001
+    </p>
+    <p>You may use, copy, modify and distribute this code for any purpose
+    (include commercial use) and without fee. Please refer to this
+    package when you modify this code.
+    </p>
+</blockquote>
+
+<h3><a href="fftbmk.html">Performance of this Package</a></h3>
+
+<h3><a href="fftlinks.html">FFT Links</a></h3>
+
+<hr>
+
+<p><b><a href="index.html">Main Page</a></b></p>
+</body>
+</html>
+

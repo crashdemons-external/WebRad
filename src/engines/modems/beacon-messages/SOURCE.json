@@ -1,0 +1,59 @@
+{
+    "repository": "Guenael/rtlsdr-wsprd",
+    "revision": "1ca9b83dd2562ce9ef2453aacdd5bc3aab982c7d",
+    "sourceUrl": "https://github.com/Guenael/rtlsdr-wsprd/tree/1ca9b83dd2562ce9ef2453aacdd5bc3aab982c7d",
+    "files": [
+        {
+            "path": "LICENSE",
+            "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+            "path": "wsprd/fano.c",
+            "sha256": "352aaa92b0bc454fff58f74069f923963078e36c95b5f31a5daeddbdcc6d8f4c"
+        },
+        {
+            "path": "wsprd/fano.h",
+            "sha256": "38492fae420a559bbce34743bb460ca024415c847843a78837d2b5fa9c328aab"
+        },
+        {
+            "path": "wsprd/metric_tables.h",
+            "sha256": "4822e01849d643d22ea6f390fdb6bd2142df8b5b8486a9398dfa27f68e2b12a5"
+        },
+        {
+            "path": "wsprd/nhash.c",
+            "sha256": "a54cafee041f2903b45566cc4995c63ff19d2fa10b556090594b4c9af73077fd"
+        },
+        {
+            "path": "wsprd/nhash.h",
+            "sha256": "680ec50a2eddca2c2a097ef24ef0d88dfdfc4469ca81b299c27b547758517af3"
+        },
+        {
+            "path": "wsprd/tab.c",
+            "sha256": "e78536ea80eab7d36cc2ec831fabab443fa0e79cd17661028cbd0e73076aac01"
+        },
+        {
+            "path": "wsprd/wsprd.c",
+            "sha256": "6e24cc6cf28a6414c4c4562eec709bc5d8c2eafc9d8cb3fa8a5f2da5934dc655"
+        },
+        {
+            "path": "wsprd/wsprd.h",
+            "sha256": "9300d5cf6a7a0f1c6462845d0942860d3dffb9dca3ebd0e9db603d17fe69a6f0"
+        },
+        {
+            "path": "wsprd/wsprd_utils.c",
+            "sha256": "6eb087eb9da57bb56db179f274ef70cf0bd393f06bb55af729261adad51ce017"
+        },
+        {
+            "path": "wsprd/wsprd_utils.h",
+            "sha256": "ab21ca4330e93ef9a71acc203632a1d04bb32e95b534fc6de28b8a11689a68db"
+        },
+        {
+            "path": "wsprd/wsprsim_utils.c",
+            "sha256": "adf3e6cf378d7e0e1384696470a9ae82fe8dcb3ae42b54635f9bf23ec3bf0a2b"
+        },
+        {
+            "path": "wsprd/wsprsim_utils.h",
+            "sha256": "c24ff0baf50b1570fad7028eb937489328a21d4216ec7450d487ce3f37cdb565"
+        }
+    ]
+}

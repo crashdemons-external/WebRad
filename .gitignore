@@ -1,0 +1,37 @@
+# Dependencies and local tools
+/node_modules/
+/.tools/
+/.engine-pending/
+/scripts/pending-sources.py
+
+# Generated engines, deployments, caches and build reports
+/build/
+
+# Local documentation, review artifacts and editor state
+/docs/
+*.md
+!/licenses/**/*.md
+!/src/engines/**/*.md
+AGENTS.md
+/.agents/
+/.codex/
+/.claude/
+/.vscode/
+/.idea/
+
+# Local settings, credentials and transient output
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.py[cod]

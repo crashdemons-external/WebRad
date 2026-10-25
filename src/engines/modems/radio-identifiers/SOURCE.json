@@ -1,0 +1,35 @@
+{
+    "repository": "atmatthewat/mdc-encode-decode",
+    "revision": "45fc9095fbde8bf6a6988c7dc0de64a4ec0ffe12",
+    "sourceUrl": "https://github.com/atmatthewat/mdc-encode-decode/tree/45fc9095fbde8bf6a6988c7dc0de64a4ec0ffe12",
+    "files": [
+        {
+            "path": "mdc_common.c",
+            "sha256": "727969c7e538088e3b9e2e5c72d6cccfa5657fdef76732e8e74c692811b6c156"
+        },
+        {
+            "path": "mdc_decode.c",
+            "sha256": "f78ff609bc893086f59ae3e67bba4108d4a368a7c52a0ad8b1a3d12561f7474e"
+        },
+        {
+            "path": "mdc_decode.h",
+            "sha256": "6cdd7165c5badbebea50be1f1f84ef56a682b0e9dbbcb0023d3d15dfb556f59e"
+        },
+        {
+            "path": "mdc_encode.c",
+            "sha256": "db88cb1111eaa762df35f58af61111a725f1bf4ee2aa9ae9f9d5f262b5adf4dc"
+        },
+        {
+            "path": "mdc_encode.h",
+            "sha256": "f13ee686bed9e828ae97291fd44a0744de265070ccdcc31ea242356624e59461"
+        },
+        {
+            "path": "mdc_types.h",
+            "sha256": "637b8573065d2f70d4aab955348742afcc5abdf46be0baf399bbcde26d8d33a8"
+        },
+        {
+            "path": "README.md",
+            "sha256": "f8815fe2a785aef69197ebe29fef939a04dca4f9d91f67959150fe1e2272191b"
+        }
+    ]
+}
